@@ -40,5 +40,5 @@ if (vk_oid && vk_id && vk_hash) {
     }
   }
 } else {
-  document.body.innerHTML = "<p>❌ Ошибка: некорректные параметры VK-видео</p>";
+  playerContainer.innerHTML = "<p>❌ Ошибка: некорректные параметры VK-видео</p>";
 }
