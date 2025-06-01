@@ -15,7 +15,7 @@ window.addEventListener("DOMContentLoaded", () => {
       console.warn("Ошибка чтения localStorage:", e);
     }
   } else {
-    fetch("playlist-vk.json")
+    fetch("Playlist-vk.json")
       .then(res => res.json())
       .then(data => {
         currentPlaylist = data;
