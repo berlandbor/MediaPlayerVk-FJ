@@ -233,3 +233,27 @@ button:hover, select:hover {
   background: #3a3a48;
   border-radius: 6px;
 }
+
+.back-btn {
+  display: block;
+  margin: 18px auto 12px auto;
+  padding: 10px 22px;
+  background: #2d2d38;
+  color: #fafafa;
+  border: none;
+  border-radius: 6px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background 0.2s;
+  box-shadow: 0 2px 8px #0005;
+}
+.back-btn:hover {
+  background: #3a3a48;
+}
+@media (max-width: 700px) {
+  .back-btn {
+    width: 98vw;
+    font-size: 1.05em;
+    padding: 12px 0;
+  }
+}
