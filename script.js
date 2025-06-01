@@ -112,8 +112,8 @@ reloadBtn.addEventListener('click', () => {
 });
 
 // --- Удаление плейлиста ---
-document.getElementById('clearDbBtn').addEventListener('click', () => {
+/*document.getElementById('clearDbBtn').addEventListener('click', () => {
   localStorage.removeItem(STORAGE_KEY);
   document.getElementById('playlist').innerHTML = '<p>Плейлист удалён.</p>';
   updateFilterOptions([]);
-});
+});*/
