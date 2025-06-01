@@ -80,9 +80,9 @@ button:hover, select:hover {
 
 .tile img {
   width: 100%;
-  height: 118px;
-  object-fit: contain;
-  background: #23232b; /* чтобы вокруг была фоновая заливка */
+  height: 180px;           /* Сделал крупнее по высоте */
+  object-fit: contain;     /* Вмещает всю картинку, не обрезая */
+  background: #23232b;     /* Фон под "полосы" */
   display: block;
 }
 .tile-title {
