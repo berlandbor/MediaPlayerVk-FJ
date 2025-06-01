@@ -81,3 +81,39 @@ function updateFilterOptions(items) {
     categoryFilter.appendChild(opt);
   });
 }
+
+// --- Модальное окно ---
+const aboutBtn = document.getElementById('aboutBtn');
+const aboutModal = document.getElementById('aboutModal');
+const closeModal = document.getElementById('closeModal');
+aboutBtn.addEventListener('click', () => {
+  aboutModal.style.display = 'flex';
+});
+closeModal.addEventListener('click', () => {
+  aboutModal.style.display = 'none';
+});
+window.addEventListener('click', e => {
+  if (e.target === aboutModal) aboutModal.style.display = 'none';
+});
+
+// --- Загрузка плейлиста ---
+const reloadBtn = document.getElementById('reloadPlaylistBtn');
+const STORAGE_KEY = "vk_playlist";
+reloadBtn.addEventListener('click', () => {
+  fetch('playlist-vk.json')
+    .then(res => res.json())
+    .then(data => {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+      renderPlaylist(data);
+      updateFilterOptions(data);
+      alert('Плейлист обновлён!');
+    })
+    .catch(() => alert('Ошибка загрузки плейлиста!'));
+});
+
+// --- Удаление плейлиста ---
+document.getElementById('clearDbBtn').addEventListener('click', () => {
+  localStorage.removeItem(STORAGE_KEY);
+  document.getElementById('playlist').innerHTML = '<p>Плейлист удалён.</p>';
+  updateFilterOptions([]);
+});
