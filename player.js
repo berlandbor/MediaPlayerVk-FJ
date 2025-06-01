@@ -16,8 +16,9 @@ const playerContainer = document.getElementById('player-container');
 if (vk_oid && vk_id && vk_hash) {
   const vk_url = `https://vk.com/video_ext.php?oid=${vk_oid}&id=${vk_id}&hash=${vk_hash}`;
   playerContainer.innerHTML = `
-    <iframe src="${vk_url}" width="720" height="420" frameborder="0" allowfullscreen allow="autoplay; encrypted-media"></iframe>
-  `;
+    <div class="video-responsive">
+  <iframe src="${vk_url}" frameborder="0" allowfullscreen allow="autoplay; encrypted-media"></iframe>
+    </div>`;
 
   // Получаем инфо из localStorage
   const playlistRaw = localStorage.getItem("vk_playlist");
