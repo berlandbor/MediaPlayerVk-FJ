@@ -17,6 +17,7 @@ header h1 {
   margin: 0 0 8px 0;
   font-size: 2em;
   letter-spacing: 1px;
+  font-weight: 700;
 }
 
 .playlist-panel {
@@ -25,6 +26,7 @@ header h1 {
   justify-content: center;
   align-items: center;
   margin-bottom: 8px;
+  flex-wrap: wrap;
 }
 
 button, select {
@@ -32,10 +34,11 @@ button, select {
   color: #fafafa;
   border: none;
   border-radius: 6px;
-  padding: 7px 15px;
+  padding: 10px 18px;
   font-size: 1em;
   cursor: pointer;
   transition: background 0.2s;
+  margin: 2px 0;
 }
 
 button:hover, select:hover {
@@ -62,9 +65,12 @@ button:hover, select:hover {
   box-shadow: 0 2px 8px #0005;
   overflow: hidden;
   width: 210px;
+  margin-bottom: 10px;
   cursor: pointer;
   transition: transform 0.16s, box-shadow 0.16s;
   padding-bottom: 8px;
+  display: flex;
+  flex-direction: column;
 }
 
 .tile:hover {
@@ -84,6 +90,7 @@ button:hover, select:hover {
   margin: 8px 10px 4px 10px;
   font-weight: bold;
   color: #70b3ff;
+  word-break: break-word;
 }
 
 .tile-category {
@@ -110,6 +117,7 @@ button:hover, select:hover {
   max-width: 520px;
   margin: auto;
   position: relative;
+  box-sizing: border-box;
 }
 
 .close {
@@ -126,6 +134,7 @@ button:hover, select:hover {
   flex-direction: column;
   align-items: center;
   margin-top: 24px;
+  width: 100%;
 }
 
 #mediaPoster {
@@ -156,18 +165,45 @@ button:hover, select:hover {
   max-width: 500px;
   margin-left: auto;
   margin-right: auto;
+  word-break: break-word;
 }
 
-@media (max-width: 600px) {
-  .tile {
-    width: 97vw;
-    min-width: 0;
+/* Адаптация для мобильных устройств */
+@media (max-width: 900px) {
+  #playlist {
+    max-width: 98vw;
   }
-  .playlist-scroll {
-    padding: 0;
+  .tile {
+    width: 44vw;
+    min-width: 180px;
+    max-width: 95vw;
+  }
+}
+
+@media (max-width: 700px) {
+  .playlist-panel {
+    flex-direction: column;
+    gap: 8px;
+    padding: 0 4vw;
+    align-items: stretch;
+  }
+  button,
+  select {
+    width: 100%;
+    margin: 0;
+    font-size: 1em;
+    box-sizing: border-box;
+  }
+  header h1 {
+    font-size: 1.2em;
   }
   #playlist {
     gap: 10px;
+    max-width: 100vw;
+  }
+  .tile {
+    width: 90vw;
+    min-width: 0;
     max-width: 98vw;
   }
   .modal-content {
@@ -177,4 +213,23 @@ button:hover, select:hover {
   #mediaPoster {
     max-width: 90vw;
   }
+}
+
+@media (max-width: 400px) {
+  .tile {
+    width: 98vw;
+  }
+  .modal-content {
+    max-width: 99vw;
+    padding: 10px 2vw;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  background: #23232b;
+}
+::-webkit-scrollbar-thumb {
+  background: #3a3a48;
+  border-radius: 6px;
 }
