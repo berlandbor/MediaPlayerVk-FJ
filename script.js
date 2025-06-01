@@ -1,9 +1,11 @@
 const playlistContainer = document.getElementById("playlist");
 const clearDbBtn = document.getElementById("clearDbBtn");
 const categoryFilter = document.getElementById("categoryFilter");
+const reloadBtn = document.getElementById('reloadPlaylistBtn');
 const STORAGE_KEY = "vk_playlist";
 let currentPlaylist = [];
 
+// --- Загрузка плейлиста при старте ---
 window.addEventListener("DOMContentLoaded", () => {
   const saved = localStorage.getItem(STORAGE_KEY);
   if (saved) {
@@ -13,9 +15,12 @@ window.addEventListener("DOMContentLoaded", () => {
       renderPlaylist(currentPlaylist);
     } catch (e) {
       console.warn("Ошибка чтения localStorage:", e);
+      currentPlaylist = [];
+      updateFilterOptions([]);
+      renderPlaylist([]);
     }
   } else {
-    fetch("Playlist-vk.json")
+    fetch("playlist-vk.json") // Используй только нижний регистр!
       .then(res => res.json())
       .then(data => {
         currentPlaylist = data;
@@ -30,13 +35,29 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 });
 
+// --- Кнопка очистки плейлиста ---
 clearDbBtn.addEventListener("click", () => {
   localStorage.removeItem(STORAGE_KEY);
   currentPlaylist = [];
   playlistContainer.innerHTML = "<p>📭 Плейлист очищен.</p>";
-  categoryFilter.innerHTML = `<option value="all">Все категории</option>`;
+  updateFilterOptions([]);
 });
 
+// --- Кнопка загрузки плейлиста ---
+reloadBtn.addEventListener('click', () => {
+  fetch('playlist-vk.json')
+    .then(res => res.json())
+    .then(data => {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+      currentPlaylist = data;
+      renderPlaylist(data);
+      updateFilterOptions(data);
+      alert('Плейлист обновлён!');
+    })
+    .catch(() => alert('Ошибка загрузки плейлиста!'));
+});
+
+// --- Фильтр по категориям ---
 categoryFilter.addEventListener("change", () => {
   const selected = categoryFilter.value;
   if (selected === "all") {
@@ -62,7 +83,6 @@ function renderPlaylist(items) {
     `;
 
     tile.addEventListener("click", () => {
-      // Передаем VK параметры в player.html
       const vkParams = `vk_oid=${encodeURIComponent(vk_oid)}&vk_id=${encodeURIComponent(vk_id)}&vk_hash=${encodeURIComponent(vk_hash)}`;
       window.open(`player.html?${vkParams}`, "_blank");
     });
@@ -95,25 +115,3 @@ closeModal.addEventListener('click', () => {
 window.addEventListener('click', e => {
   if (e.target === aboutModal) aboutModal.style.display = 'none';
 });
-
-// --- Загрузка плейлиста ---
-const reloadBtn = document.getElementById('reloadPlaylistBtn');
-const STORAGE_KEY = "vk_playlist";
-reloadBtn.addEventListener('click', () => {
-  fetch('playlist-vk.json')
-    .then(res => res.json())
-    .then(data => {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-      renderPlaylist(data);
-      updateFilterOptions(data);
-      alert('Плейлист обновлён!');
-    })
-    .catch(() => alert('Ошибка загрузки плейлиста!'));
-});
-
-// --- Удаление плейлиста ---
-/*document.getElementById('clearDbBtn').addEventListener('click', () => {
-  localStorage.removeItem(STORAGE_KEY);
-  document.getElementById('playlist').innerHTML = '<p>Плейлист удалён.</p>';
-  updateFilterOptions([]);
-});*/
