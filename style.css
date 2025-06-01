@@ -257,3 +257,27 @@ button:hover, select:hover {
     padding: 12px 0;
   }
 }
+
+.share-btn {
+  display: block;
+  margin: 12px auto 0 auto;
+  padding: 10px 22px;
+  background: #70b3ff;
+  color: #23232b;
+  border: none;
+  border-radius: 6px;
+  font-size: 1em;
+  cursor: pointer;
+  transition: background 0.2s;
+  box-shadow: 0 2px 8px #0003;
+}
+.share-btn:hover {
+  background: #4e90e7;
+}
+@media (max-width: 700px) {
+  .share-btn {
+    width: 98vw;
+    font-size: 1.05em;
+    padding: 12px 0;
+  }
+}
