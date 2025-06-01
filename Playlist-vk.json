@@ -1,1 +1,11 @@
-1.
+[
+  {
+    "title": "Пример VK-видео",
+    "vk_oid": "-176294899",
+    "vk_id": "456248594",
+    "vk_hash": "e6eee4b60b892e8f",
+    "poster": "https://vk.com/images/video_placeholder.png",
+    "category": "VK",
+    "description": "Описание видео из VK"
+  }
+]
